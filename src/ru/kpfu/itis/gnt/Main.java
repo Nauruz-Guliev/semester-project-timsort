@@ -11,6 +11,7 @@ public class Main {
         System.out.println(Arrays.toString(arr));
         //InsertionSort.sort(arr, 0, arr.length-1);
         TimSort.sort(arr);
+        //MergeSort.sort(arr,0, arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
 }
