@@ -5,7 +5,7 @@ package ru.kpfu.itis.gnt;
 public class TimSort {
 
     public static int RUN = 32;
-    public static <T extends Comparable> void sort(T[] arr) {
+    public static void sort(int[] arr) {
         int n = arr.length;
         for (int start = 0; start < n; start +=RUN) {
             int end = Math.min(start + RUN-1, n-1);

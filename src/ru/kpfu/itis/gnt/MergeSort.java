@@ -1,7 +1,7 @@
 package ru.kpfu.itis.gnt;
 
 public class MergeSort {
-    public static <T extends Comparable> void sort(T[] arr, int start, int stop) {
+    public static void sort(int[] arr, int start, int stop) {
         if (start>=stop) {
             return;
         }
@@ -11,3 +11,5 @@ public class MergeSort {
         Merging.merge(arr, start, middle, stop);
     }
 }
+
+

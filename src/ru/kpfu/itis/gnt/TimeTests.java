@@ -15,10 +15,10 @@ public class TimeTests {
 
     private static File mainFold;
 
-    private static final int countOfTests = 1;
+    private static final int countOfTests = 10;
     private static final int k = 10; //коэффециент увеличения кол-ва элементов
-    private static final int countOfDataSets = 1;
-    private static final int dataSetSize = (int) 1e4;
+    private static final int countOfDataSets = 10;
+    private static final int dataSetSize = (int) 1e6;
 
 
     public static void main(String[] args) throws IOException {
@@ -71,7 +71,7 @@ public class TimeTests {
                 for (int j = 0; j < countOfTests; j++) {
 
                     Scanner data = new Scanner(new File(mainFold.toPath().resolve("sort").resolve( "dataSet" + i + ".txt").toString()));
-                    Integer[] arr = new Integer[curDataSetSize];
+                    int[] arr = new int[curDataSetSize];
                     for (int l = 0; l < curDataSetSize; l++) {
                         arr[l] = data.nextInt();
                     }
@@ -112,7 +112,7 @@ public class TimeTests {
                 for (int j = 0; j < countOfTests; j++) {
 
                     Scanner data = new Scanner(new File(mainFold.toPath().resolve("sort").resolve( "dataSet" + i + ".txt").toString()));
-                    Integer[] arr = new Integer[curDataSetSize];
+                    int[] arr = new int[curDataSetSize];
                     for (int l = 0; l < curDataSetSize; l++) {
                         arr[l] = data.nextInt();
                     }
