@@ -23,7 +23,7 @@ public class TimeTests {
 
     public static void main(String[] args) throws IOException {
 
-        TimeTests test = new TimeTests(new File("C:\\Users\\ockap\\Desktop\\TestsData"));
+        TimeTests test = new TimeTests(new File("src/testFiles"));
         test.createDataSets("sort");
 
 
