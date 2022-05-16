@@ -1,7 +1,7 @@
 package ru.kpfu.itis.gnt;
 
-public class MergeSort {
-    public static void sort(int[] arr, int start, int stop) {
+public class MergeSort extends Sort {
+    public void sort(int[] arr, int start, int stop) {
         if (start>=stop) {
             return;
         }

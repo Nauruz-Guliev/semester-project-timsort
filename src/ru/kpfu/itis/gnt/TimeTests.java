@@ -16,7 +16,8 @@ public class TimeTests {
     private static File mainFold;
 
     private static final int countOfTests = 10;
-    private static final int k = 10; //коэффециент увеличения кол-ва элементов
+    private static final int k1 = 2; //коэффециент1 увеличения кол-ва элементов
+    private static final int k2 = 5; //коэффециент2 увеличения кол-ва элементов
     private static final int countOfDataSets = 10;
     private static final int dataSetSize = (int) 1e6;
 
@@ -31,9 +32,9 @@ public class TimeTests {
         File results = new File(mainFold.toPath().resolve("Results").toString());
         results.mkdir();
         File timsortResults = new File(results.toPath().resolve("timsort.txt").toString());
-        test.timsortTimeTest(timsortResults);
         File mergesortResults = new File(results.toPath().resolve("mergesort.txt").toString());
-        test.mergesortTimeTest(mergesortResults);
+        test.TimeTest(timsortResults, new TimSort());
+        test.TimeTest(mergesortResults, new MergeSort());
     }
 
 
@@ -56,17 +57,18 @@ public class TimeTests {
     }
 
 
-    public void timsortTimeTest(File results) throws IOException {
+    public void TimeTest(File results, Sort sort) throws IOException {
         int dataSetSizeCopy = dataSetSize;
-        int size = -1;
+        int size = -2;
         while (dataSetSizeCopy > 0) {
-            size++;
-            dataSetSizeCopy /= k;
+            size += 2;
+            dataSetSizeCopy /= k1 * k2;
         }
-        System.out.println(size);
         int[] times = new int[size];
-
-        for (int curDataSetSize = k; curDataSetSize <= dataSetSize; curDataSetSize*=k) {
+        int[] timesSizes = new int[size]; int ij = 0;
+        boolean bool = true;
+        for (int curDataSetSize = k2; curDataSetSize <= dataSetSize; curDataSetSize = bool ? curDataSetSize*k1 : curDataSetSize*k2, bool = !bool) {
+            timesSizes[ij] = curDataSetSize;
             for (int i = 0; i < countOfDataSets; i++) {
                 for (int j = 0; j < countOfTests; j++) {
 
@@ -76,11 +78,10 @@ public class TimeTests {
                         arr[l] = data.nextInt();
                     }
                     data.close();
-
                     long t1 = System.currentTimeMillis();
-                    TimSort.sort(arr);
+                    sort.sort(arr, 0, arr.length);
                     long t2 = System.currentTimeMillis();
-                    times[(int) (Math.log(curDataSetSize)/Math.log(k) - 1)] += t2 - t1;
+                    times[ij++] += t2 - t1;
 
                 }
             }
@@ -90,52 +91,12 @@ public class TimeTests {
         FileWriter out = new FileWriter(results);
         for (int j = 0; j < size; j++) {
             times[j] = times[j] / (countOfDataSets * countOfTests);
-            out.write(((int) (k*Math.pow(k,j)) + "\t" + times[j] + "\n").replace('.',','));
+            out.write(( timesSizes[j] + "\t" + times[j] + "\n").replace('.',','));
         }
         out.flush();
         out.close();
     }
 
-
-    public void mergesortTimeTest(File results) throws IOException {
-        int dataSetSizeCopy = dataSetSize;
-        int size = -1;
-        while (dataSetSizeCopy > 0) {
-            size++;
-            dataSetSizeCopy /= k;
-        }
-        System.out.println(size);
-        int[] times = new int[size];
-
-        for (int curDataSetSize = k; curDataSetSize <= dataSetSize; curDataSetSize*=k) {
-            for (int i = 0; i < countOfDataSets; i++) {
-                for (int j = 0; j < countOfTests; j++) {
-
-                    Scanner data = new Scanner(new File(mainFold.toPath().resolve("sort").resolve( "dataSet" + i + ".txt").toString()));
-                    int[] arr = new int[curDataSetSize];
-                    for (int l = 0; l < curDataSetSize; l++) {
-                        arr[l] = data.nextInt();
-                    }
-                    data.close();
-
-                    long t1 = System.currentTimeMillis();
-                    MergeSort.sort(arr,0, arr.length);
-                    long t2 = System.currentTimeMillis();
-                    times[(int) (Math.log(curDataSetSize)/Math.log(k) - 1)] += t2 - t1;
-
-                }
-            }
-        }
-
-
-        FileWriter out = new FileWriter(results);
-        for (int j = 0; j < size; j++) {
-            times[j] = times[j] / (countOfDataSets * countOfTests);
-            out.write(((int) (k*Math.pow(k,j)) + "\t" + times[j] + "\n").replace('.',','));
-        }
-        out.flush();
-        out.close();
-    }
 
 
 
