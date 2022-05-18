@@ -25,15 +25,15 @@ public class TimeTests {
     public static void main(String[] args) throws IOException {
 
         TimeTests test = new TimeTests(new File("src/testFiles"));
-        test.createDataSets("sort");
+        //test.createDataSets("sort");
 
 
 
         File results = new File(mainFold.toPath().resolve("Results").toString());
         results.mkdir();
-        File timsortResults = new File(results.toPath().resolve("timsort.txt").toString());
+//        File timsortResults = new File(results.toPath().resolve("timsort.txt").toString());
+//        test.TimeTest(timsortResults, new TimSort());
         File mergesortResults = new File(results.toPath().resolve("mergesort.txt").toString());
-        test.TimeTest(timsortResults, new TimSort());
         test.TimeTest(mergesortResults, new MergeSort());
     }
 
@@ -69,22 +69,27 @@ public class TimeTests {
         boolean bool = true;
         for (int curDataSetSize = k2; curDataSetSize <= dataSetSize; curDataSetSize = bool ? curDataSetSize*k1 : curDataSetSize*k2, bool = !bool) {
             timesSizes[ij] = curDataSetSize;
+System.out.println(curDataSetSize + " dataSetSize");
             for (int i = 0; i < countOfDataSets; i++) {
+System.out.print("\tdataSetNumber: " + i + "; Test number: ");
                 for (int j = 0; j < countOfTests; j++) {
-
+System.out.print(j + " ");
                     Scanner data = new Scanner(new File(mainFold.toPath().resolve("sort").resolve( "dataSet" + i + ".txt").toString()));
                     int[] arr = new int[curDataSetSize];
                     for (int l = 0; l < curDataSetSize; l++) {
                         arr[l] = data.nextInt();
                     }
                     data.close();
+
                     long t1 = System.currentTimeMillis();
-                    sort.sort(arr, 0, arr.length);
+                    sort.sort(arr, 0, arr.length - 1);
                     long t2 = System.currentTimeMillis();
-                    times[ij++] += t2 - t1;
+                    times[ij] += t2 - t1;
 
                 }
+System.out.println();
             }
+            ij++;
         }
 
 
