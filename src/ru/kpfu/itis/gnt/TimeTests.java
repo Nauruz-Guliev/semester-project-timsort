@@ -8,10 +8,12 @@ import java.util.Scanner;
 public class TimeTests implements Runnable{
     private File results;
     private Sort sort;
+    private int i;
 
-    public TimeTests(File mainFold) {
+    public TimeTests(File mainFold, int i) {
         this.mainFold = mainFold;
         this.mainFold.mkdir();
+        this.i = i;
     }
     @Override
     public void run() {
@@ -27,7 +29,7 @@ public class TimeTests implements Runnable{
     private static final int k1 = 2; //коэффециент1 увеличения кол-ва элементов
     private static final int k2 = 5; //коэффециент2 увеличения кол-ва элементов
     private static final int countOfDataSets = 10;
-    private static final int dataSetSize = (int) 1e6;
+    private static final int dataSetSize = (int) 1e4;
 
 
     public void createDataSets(String operation) throws IOException {
@@ -76,7 +78,7 @@ public class TimeTests implements Runnable{
                     data.close();
 
                     long t1 = System.currentTimeMillis();
-                    sort.sort(arr, 0, arr.length - 1);
+                    sort.sort(arr, 0, arr.length - this.i);
                     long t2 = System.currentTimeMillis();
                     times[ij] += t2 - t1;
 
