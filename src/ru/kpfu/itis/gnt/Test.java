@@ -12,6 +12,7 @@ public class Test {
         File results = new File("src/testFiles/Results/");
         results.mkdirs();
 
+        test1.createDataSets("sort");
         //timsort
         test1.setResults(new File(results.toPath().resolve("timsort.txt").toString()));
         test1.setSort(new TimSort());

@@ -29,7 +29,7 @@ public class TimeTests implements Runnable{
     private static final int k1 = 2; //коэффециент1 увеличения кол-ва элементов
     private static final int k2 = 5; //коэффециент2 увеличения кол-ва элементов
     private static final int countOfDataSets = 10;
-    private static final int dataSetSize = (int) 1e4;
+    private static final int dataSetSize = (int) 5e5;
 
 
     public void createDataSets(String operation) throws IOException {
