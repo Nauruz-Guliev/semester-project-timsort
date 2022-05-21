@@ -54,7 +54,7 @@ public class TimeTests implements Runnable{
 
     public void timeTest() throws IOException {
         int dataSetSizeCopy = dataSetSize;
-        int size = -2;
+        int size = 0;
         while (dataSetSizeCopy > 0) {
             size += 2;
             dataSetSizeCopy /= k1 * k2;
