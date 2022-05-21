@@ -34,7 +34,7 @@ Timsort - гибридный алгоритм сортировки, сочета
 ## Структура проекта
 
 Проект состоит из следующих частей:
-- [`src`](src)/[`ru`](src/ru)//[`kpfu`](src/ru/kpfu)/[`itis`](src/ru/kpfu/itis)/[`gnt`](src/ru/kpfu/itis/gnt) - реализации алгоритмов сортировки;
+- [`src`](src)/[`ru`](src/ru)/[`kpfu`](src/ru/kpfu)/[`itis`](src/ru/kpfu/itis)/[`gnt`](src/ru/kpfu/itis/gnt) - реализации алгоритмов сортировки;
 - [`src`](src)/[`testFiles`](testFiles) - набор данных для сортировок;
 
 
